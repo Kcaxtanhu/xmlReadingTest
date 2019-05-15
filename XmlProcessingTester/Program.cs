@@ -56,7 +56,7 @@ namespace XmlProcessingTester
                         end = DateTime.Now;
                     }
                     Console.WriteLine($"The Reader started at { init } and finished at { end }. So the processing time was { end.Subtract(init) }");
-                    Console.WriteLine($"Header:{ Environment.NewLine }{ header }{ Environment.NewLine }Body:{ Environment.NewLine }{ body }");
+                    // Console.WriteLine($"Header:{ Environment.NewLine }{ header }{ Environment.NewLine }Body:{ Environment.NewLine }{ body }");
                 }
             );
         }
@@ -83,7 +83,7 @@ namespace XmlProcessingTester
 
                     Console.WriteLine($"The Documente size is { size } bytes.");
                     Console.WriteLine($"The Documente started loading at { init } and finished at { end }. So the processing time was { end.Subtract(init) }");
-                    Console.WriteLine($"Header:{ Environment.NewLine }{ header }{ Environment.NewLine }Body:{ Environment.NewLine }{ body }");
+                    // Console.WriteLine($"Header:{ Environment.NewLine }{ header }{ Environment.NewLine }Body:{ Environment.NewLine }{ body }");
                 }
             );
         }
