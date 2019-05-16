@@ -13,6 +13,7 @@ namespace XmlProcessingTeste
         public RawTextFormatter()
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/plain"));
+            SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/xml"));
         }
 
         /// <summary>
@@ -26,7 +27,7 @@ namespace XmlProcessingTeste
                 throw new ArgumentNullException(nameof(context));
 
             var contentType = context.HttpContext.Request.ContentType;
-            if (contentType == "text/plain")
+            if (contentType == "text/plain" || contentType == "text/xml")
                 return true;
 
             return false;
@@ -43,7 +44,7 @@ namespace XmlProcessingTeste
             var contentType = context.HttpContext.Request.ContentType;
 
 
-            if (contentType == "text/plain")
+            if (contentType == "text/plain" || contentType == "text/xml")
             {
                 using (var reader = new StreamReader(request.Body))
                 {
