@@ -24,37 +24,38 @@ namespace XmlProcessingTeste
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(o => o.InputFormatters.Insert(0, new RawTextFormatter()))
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(
+                o => o.InputFormatters.Insert(0, new RawTextFormatter()))
+                                      .SetCompatibilityVersion(CompatibilityVersion.Version_2_2
+            );
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(
-                    "v1",
+                    "v1", 
                     new Info
                     {
-                        Title = "Teste XML Performance",
                         Version = "v1",
-                        Description = "Não sei o que escrever..."
+                        Title = "ToDo API",
+                        Description = "A simple example ASP.NET Core Web API",
+                        TermsOfService = "None",
+                        Contact = new Contact
+                        {
+                            Name = "Shayne Boyer",
+                            Email = string.Empty,
+                            Url = "https://twitter.com/spboyer"
+                        },
+                        License = new License
+                        {
+                            Name = "Use under LICX",
+                            Url = "https://example.com/license"
+                        }
                     });
+
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
-
-                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
-                    { "Bearer", Enumerable.Empty<string>() },
-                });
-
-
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = "header",
-                    Type = "apiKey"
-                });
-
             });
         }
 
@@ -73,6 +74,7 @@ namespace XmlProcessingTeste
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseStaticFiles();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -81,8 +83,8 @@ namespace XmlProcessingTeste
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint($"/XmlProcessingTeste/swagger/v1/swagger.json", "XmlProcessingTeste");
-                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint($"./swagger/v1/swagger.json", "Xml Processing Teste");
+                //c.RoutePrefix = string.Empty;
             });
         }
     }

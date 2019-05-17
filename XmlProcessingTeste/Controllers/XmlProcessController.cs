@@ -9,6 +9,11 @@ namespace XmlProcessingTeste.Controllers
     [Route("api/{controller}")]
     public class XmlProcessController : Controller
     {
+        /// <summary>
+        /// Process the XML string using XML Document and by query path retrieve content os Header and Bocy
+        /// </summary>
+        /// <param name="soapMessage"></param>
+        /// <returns></returns>
         [HttpPost("processDocument")]
         public async Task<ActionResult<Result>> XmlDocument([FromBody] string soapMessage)
         {
@@ -17,6 +22,11 @@ namespace XmlProcessingTeste.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Process the XML string using a reader and retrieves content while reading and Header and Body are empty.
+        /// </summary>
+        /// <param name="soapMessage"></param>
+        /// <returns></returns>
         [HttpPost("processReader")]
         public async Task<ActionResult<Result>> XmlReader([FromBody] string soapMessage)
         {
